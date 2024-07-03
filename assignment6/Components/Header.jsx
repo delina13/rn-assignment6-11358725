@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ showMenu = true }) => {
+const Header = ({ showMenu = true, showShoppingBag = true }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.header}>
       {showMenu ? (
@@ -9,9 +12,13 @@ const Header = ({ showMenu = true }) => {
       ) : (
         <View style={styles.placeholder} />
       )}
-      <Image source={require('../assets/Logo.png')} />
-      <View>
-        <Image source={require('../assets/shoppingBag.png')} />
+      <Image source={require('../assets/Logo.png')} style={{marginLeft:30}} />
+      <View style={styles.iconContainer}>
+        {showShoppingBag && (
+          <Pressable onPress={() => navigation.navigate('Checkout')}>
+            <Image source={require('../assets/shoppingBag.png')} />
+          </Pressable>
+        )}
         <Image source={require('../assets/Search.png')} />
       </View>
     </View>
@@ -26,9 +33,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   placeholder: {
-    width: 24, 
-    height: 24, 
-    opacity: 0, 
+    width: 24,
+    height: 24,
+    opacity: 0,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10
   },
 });
 

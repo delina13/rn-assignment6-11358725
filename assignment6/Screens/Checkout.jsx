@@ -5,7 +5,7 @@ import Header from '../Components/Header'
 const Checkout = () => {
     return (
         <View style={styles.container}>
-            <Header showMenu={false}/>
+            <Header showMenu={false} showShoppingBag={false}/>
             <View style={styles.subHeader}>
                 <Text style={styles.subHeaderText}>CHECKOUT</Text>
                 <View style={styles.lineContainer}>
