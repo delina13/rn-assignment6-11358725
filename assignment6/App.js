@@ -1,29 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { CartProvider } from './CartContext';
 import Home from './Screens/Home';
 import Checkout from './Screens/Checkout';
 
 const Stack = createStackNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Checkout' component={Checkout} />
-      </Stack.Navigator>
-     </NavigationContainer>
-    </View>
+    <CartProvider>
+      <StatusBar barStyle='dark-content' backgroundColor='white' />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen 
+            name="Home" 
+            component={Home} 
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="Checkout" 
+            component={Checkout} 
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </CartProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+export default App;

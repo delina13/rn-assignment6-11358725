@@ -1,12 +1,18 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import React, { useContext } from 'react'
+import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { CartContext } from '../CartContext';
 
 const Product = ({ product }) => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <View style={styles.container}>
         <View>
             <Image source={product.image}/>
-            <Pressable style={styles.plusContainer}>
+            <Pressable 
+              style={styles.plusContainer}
+              onPress={() => addToCart(product)}
+            >
                 <Image source={require('../assets/add_circle.png')}/>
             </Pressable>
         </View>
@@ -46,4 +52,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Product
+export default Product;

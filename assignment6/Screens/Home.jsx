@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Pressable, FlatList } from 'react-native'
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native'
 import Product from '../Components/Product'
 import Header from '../Components/Header'
 
 const products = [
-    { id: 1, name: "Office Wear", type: "reversible angora cardigan", price: 120, image: require('../assets/dress1.png'), description:"Office wear for you office" },
+    { id: 1, name: "Office Wear", type: "reversible angora cardigan", price: 120, image: require('../assets/dress1.png'), description: "Office wear for you office" },
     { id: 2, name: "Black", type: "reversible angora cardigan", price: 120, image: require('../assets/dress2.png'), description: "Recycle Boucle Knit Cardigan Black" },
     { id: 3, name: "Church Wear", type: "reversible angora cardigan", price: 120, image: require('../assets/dress3.png'), description: "Recycle Boucle Knit Cardigan Pink" },
     { id: 4, name: "Lamerei", type: "reversible angora cardigan", price: 120, image: require('../assets/dress4.png'), description: "Recycle Boucle Knit Cardigan Pink" },
@@ -32,7 +32,7 @@ const Home = () => {
             <FlatList
                 data={products}
                 renderItem={({ item }) => <Product product={item} />}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
                 numColumns={2}
                 columnWrapperStyle={{ gap: 15 }}
                 showsVerticalScrollIndicator={false}
@@ -46,16 +46,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 60,
         paddingHorizontal: 25
-    },
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '100%'
-    },
-    headerRight: {
-        flexDirection: 'row',
-        gap: 15
     },
     subHeader: {
         flexDirection: 'row',
@@ -76,13 +66,10 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         backgroundColor: '#f3f3f3',
-        borderRadius: '50%',
+        borderRadius: 15,
         alignItems: 'center',
         justifyContent: 'center'
     },
-    flatList: {
-        numColumns: 2,
-    }
 })
 
 export default Home
